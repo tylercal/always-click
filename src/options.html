@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Auto SSO Options</title>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container pt-5">
+
+    <h1 class="mb-5">Always click these buttons</h1>
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <p class="lead">
+                Configure a list of URLs prefixes and associated elements (defined via CSS selectors) that
+                you always want to click when a page loads. E.g. if you always use the "Sign in
+                with Google" button on VRBO, you would add a rule for <code>https://www.vrbo.com</code>
+                to look for the selector <code>btn#googleSocial</code>.
+            </p>
+        </div>
+    </div>
+
+    <div id="error" class="alert alert-danger d-none"></div>
+    <div id="warn" class="alert alert-warning d-none"></div>
+    <div id="message" class="alert alert-success d-none"></div>
+
+    <form id="items">
+            <div class="row option d-grid gap-3 mb-3 d-none" id="example">
+                <div class="col-5">
+                    <input type="text" class="form-control url"
+                           placeholder="URL e.g. https://www.vrbo.com"
+                           aria-label="url"/>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control selector"
+                           placeholder="CSS selector e.g. btn#googleSocial"
+                           aria-label="selector"/>
+                </div>
+                <div class="col-1">
+                    <input type="button" class="btn btn-outline-danger remove-always-click" value="x"
+                           tabindex="-1">
+                </div>
+            </div>
+    </form>
+    <button type="button" class="btn btn-outline-primary" id="save">Save</button>
+
+    <div class="my-5 row d-grid gap-3">
+        <div class="col-2">
+            <a role="button" class="btn btn-outline-secondary" id="export">Export Settings</a>
+        </div>
+
+        <div class="custom-file col-4">
+            <input type="file" id="upload" class="custom-file-input">
+            <label class="custom-file-label" for="upload">Import Settings File</label>
+        </div>
+    </div>
+
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>
