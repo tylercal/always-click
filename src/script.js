@@ -21,6 +21,7 @@ function init() {
                 })
             }
         })
+        console.log("Looking to auto-click: "+selectors)
         clickSelectors()
         loadObserver.observe(document.body, {childList: true, subtree: true})
     })

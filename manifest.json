@@ -1,9 +1,9 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "Always Click",
   "description": "Automatically always click specified buttons on frequently visited pages.",
-  "version": "1.0.0",
+  "version": "1.1.0",
 
   "options_page": "src/options.html",
 
@@ -13,28 +13,16 @@
     "128": "images/icon-128.png"
   },
 
-  "page_action": {
-    "default_icon": {
-      "16": "images/icon-16.png",
-      "48": "images/icon-48.png",
-      "128": "images/icon-128.png"},
-    "default_title": "Always Click",
-    "default_popup": "src/menu.html"
-  },
-
   "permissions": [
     "storage",
-    "tabs",
-    "webNavigation",
-    "<all_urls>"
+    "scripting"
   ],
 
-  "web_accessible_resources": [
-    "images/*"
+  "host_permissions": [
+    "*://*/*"
   ],
 
   "background": {
-    "scripts": ["src/background.js"],
-    "persistent": false
+    "service_worker": "src/service_worker.js"
   }
 }
