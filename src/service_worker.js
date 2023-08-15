@@ -23,8 +23,6 @@ function register(filters) {
         .catch((err) => console.warn("Could not load filters", err))
 }
 
-// on startup
-console.log("service launch")
 chrome.storage.sync.get().then(result => {
     if (result && result.autos && hasData(result.autos)) {
         console.log("Getting click rules")
@@ -54,3 +52,16 @@ chrome.storage.onChanged.addListener(async (changes, where) => {
             .then(() => console.log("un-registration complete"));
     }
 })
+
+// lifecycle detection
+console.log("service launch")
+
+chrome.runtime.onInstalled.addListener(() => console.log("installed"))
+chrome.runtime.onStartup.addListener(() => console.log("startup"))
+chrome.runtime.onConnect.addListener(() => console.log("connected"))
+chrome.runtime.onConnectExternal.addListener(() => console.log("connected"))
+chrome.runtime.onMessage.addListener(() => console.log("message"))
+chrome.runtime.onRestartRequired.addListener(() => console.log("restart req"))
+chrome.runtime.onSuspend.addListener(() => console.log("suspend"))
+chrome.runtime.onSuspendCanceled.addListener(() => console.log("suspend cancel"))
+chrome.runtime.onUpdateAvailable.addListener(() => console.log("update available"))
