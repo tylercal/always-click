@@ -9,13 +9,23 @@ const loadObserver = new MutationObserver(function (mutations) {
     if (mutationCount > 100) { loadObserver.disconnect() }
 });
 
+function urlMatches(url, filter) {
+    let lastIndex = -1
+    for (const part of filter.split("*")) {
+        lastIndex = url.indexOf(part, lastIndex)
+        if (lastIndex < 0) { return false; }
+        lastIndex += part.length
+    }
+    return true
+}
+
 function init() {
     chrome.storage.sync.get(results => {
         const url = document.location.href
         Object.entries(results.autos).forEach(result => {
             let filter = result[0]
             let theseSelectors = result[1]
-            if (url.includes(filter)) {
+            if (urlMatches(url, filter)) {
                 theseSelectors.forEach(selector => {
                     selectors.push(selector)
                 })
